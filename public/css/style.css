@@ -1,0 +1,180 @@
+.navbar{
+    height: 5rem;
+    z-index: 9999;
+    background: #fffcfc;
+}
+
+.fa-compass{
+    font-size: 2rem;
+    color: palevioletred;
+}
+
+.container{
+    padding: 1rem 0;
+    margin: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.nav-link {
+    color: #000000;
+}
+.nav-2{
+    font-weight: 600;
+}
+
+.f-info-links{
+    width: 100%;
+    text-decoration: none;
+    color: #222222;
+}
+
+.f-info-links:hover{
+    text-decoration: underline;
+}
+
+
+.f-info{
+    height: 8rem;
+    background-color: #ebebeb;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.f-info.socials{
+    width: 100%;
+    font-size: 1.2rem;
+    margin-right: 1rem;
+}
+
+.listing-card{
+    border: none;
+    margin-bottom: 2rem;
+}
+
+.listing-card .card-img-top{
+    border-radius: 1rem;
+    width: 100%;
+    object-fit: cover;
+}
+
+.listing-card .card-body{
+    padding: 0;
+}
+ .card-text p{
+    font-weight: 800;
+}
+
+
+.card-text{
+    padding: 0;
+    margin: 0;
+}
+
+.listing-card .listing-link{
+    text-decoration: none;
+}
+
+.card-img-overlay{
+    opacity: 0;
+}
+
+
+.card-img-overlay:hover{
+    background-color: #fff;
+    opacity: .2;
+}
+
+.edit-btn{
+    background: #fe424d;
+    border: none;
+}
+
+h1{
+    font-weight: bolder;
+    margin-bottom: 1rem;
+}
+
+.show-img{
+    height: 45vh;
+    object-fit: cover;
+}
+.listing-card .card-body{
+    padding-top: 20px;
+}
+
+a{
+    text-decoration: none;
+    color: #ebebeb;
+}
+
+.delete-btn{
+    margin-top: .5rem;
+}
+
+
+
+li{
+    list-style: none;
+}
+
+.card-body{
+    padding: 10px;
+    height: auto;
+}
+
+.min-vh-70 {
+    min-height: 70vh;
+}
+
+.taxes{
+    display: none;
+}
+
+.active{
+    display: inline;
+}
+
+
+#filters{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.4rem;
+    margin-top: 1.8rem;
+}
+
+#filters .filter{
+    text-align: center;
+    opacity: .7;
+}
+
+#filters .filter:hover{
+    opacity: 1;
+    cursor: pointer;
+}
+
+#filters .filter  i{
+    font-size: 1.3rem;
+}
+
+#filters .filter p{
+    font-size: .9rem
+}
+
+.tax-toggler{
+    border: 1px solid black;
+    border-radius:  1rem;
+    height: 2rem;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 4.3rem;
+}
