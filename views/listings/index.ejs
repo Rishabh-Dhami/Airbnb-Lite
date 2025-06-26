@@ -1,98 +1,195 @@
-<% layout('layout/boilerplate') -%> 
+<% layout('layout/boilerplate') -%>
 
 <style>
-   
+  #filters {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 1rem;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #eee;
+  }
 
+  .filter {
+    min-width: 90px;
+    text-align: center;
+    flex: 0 0 auto;
+    cursor: pointer;
+    transition: color 0.2s, background 0.2s;
+    padding: 0.5rem 0.2rem;
+    border-radius: 0.75rem;
+  }
+
+  .filter:hover {
+    background: #f8f9fa;
+    color: #fe424d;
+  }
+
+  .filter i {
+    font-size: 1.5rem;
+    margin-bottom: 0.2rem;
+    display: block;
+  }
+
+  .tax-toggler {
+    min-width: 160px;
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    margin-left: 1rem;
+  }
+
+  .listing-link {
+    text-decoration: none;
+    color: inherit;
+    width: 100%;
+  }
+
+  .listing-card {
+    margin-bottom: 2rem;
+    width: 100%;
+    max-width: 23rem;
+    border-radius: 1.25rem;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    transition: box-shadow 0.2s, transform 0.2s;
+    overflow: hidden;
+    background: #fff;
+    cursor: pointer;
+    padding: 1.25rem 1rem 1rem 1rem;
+  }
+
+  .listing-card:hover {
+    box-shadow: 0 8px 32px rgba(254, 66, 77, 0.13);
+    transform: translateY(-4px) scale(1.02);
+  }
+
+  .listing-card img {
+    border-radius: 1.25rem 1.25rem 0 0;
+    object-fit: cover;
+    height: 20rem;
+    width: 100%;
+    transition: filter 0.2s, transform 0.2s;
+  }
+
+  .listing-card:hover img {
+    filter: brightness(0.95) saturate(1.1);
+    transform: scale(1.03);
+  }
+
+  .card-body {
+    padding: 1.5rem 1.2rem 1.2rem 1.2rem;
+  }
+
+  /* Mobile Responsive Adjustments */
+  @media (max-width: 767px) {
+    #filters {
+      gap: 0.5rem;
+      padding-bottom: 0.5rem;
+    }
+
+    .listing-card {
+      max-width: 100%;
+      border-radius: 1rem;
+      padding: 0.7rem 0.5rem 0.5rem 0.5rem;
+    }
+    .listing-card img {
+      border-radius: 1rem 1rem 0 0;
+      height: 13rem;
+    }
+    .card-body {
+      padding: 1rem;
+    }
+  }
+
+  /* Custom scrollbar for filter bar */
+  #filters::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  #filters::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 4px;
+  }
 </style>
 
-  <div>
-    <h1>All Listings</h1>
+<div class="container py-3 px-2 px-md-3">
+  <h1 class="mb-3">All Listings</h1>
 
-    <div id="filters">
-        <div class="filter">
-            <i class="fa-solid fa-fire"></i>
-            <p>Trending</p>
-        </div>
-        <div class="filter">
-            <i class="fa-solid fa-bed"></i>
-            <p>Rooms</p>
-        </div>
-        <div class="filter">
-            <i class="fa-solid fa-mountain-city"></i>
-            <p>Iconic Cities</p>
-        </div>
-        <div class="filter">
-            <i class="fa-solid fa-mountain"></i>
-            <p>Mountains</p>
-        </div>
-        <div class="filter">
-            <i class="fa-brands fa-fort-awesome"></i>
-            <p>Castles</p>
-        </div>
-        <div class="filter">
-            <i class="fa-solid fa-person-swimming"></i>
-            <p>Amazing Pools</p>
-        </div>
-        <div class="filter">
-            <i class="fa-solid fa-campground"></i>
-            <p>Camping</p>
-        </div>
-        <div class="filter">
-            <i class="fa-solid fa-tractor"></i>
-            <p>Farm</p>
-        </div>
-        <div class="filter">
-            <i class="fa-solid fa-snowflake"></i>
-            <p>Arctic</p>
-        </div>
-        <div class="filter">
-            <i class="fa-solid fa-person-swimming"></i>
-            <p>Amazing Pools</p>
-        </div>
-        <div class="filter">
-            <i class="fa-solid fa-campground"></i>
-            <p>Camping</p>
-        </div>
-        
-        <div class="tax-toggler">
-            <div class="form-check-reverse form-switch filter">
-                <input class="form-check-input switchCheck" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-                <label class="form-check-label" for="flexSwitchCheckDefault">Display Taxes</label>
-            </div>
-        </div>
+  <!-- Filter Scrollbar -->
+  <div id="filters" class="mb-3">
+    <div class="filter flex-shrink-0">
+      <i class="fa-solid fa-fire"></i>
+      <p>Trending</p>
     </div>
-
-    <div class="row row-cols-lg-3  row-cols-md-2 row-cols-sm-1 mt-3">
-        <% lists.map((listing) => { %>
-            <a href="/listings/<%- listing._id %>" class="listing-link">
-                <div class="card col listing-card" style="width: 23rem; ">
-                    <img src="<%- listing.image.url %>"  class="card-img-top" alt="..." style="height: 20rem;">
-                    <div class="card-img-overlay">fgd</div>
-                    <div class="card-body text-start">
-                        <p class="card-text">
-                            <%- listing.title %> <br> 
-                             <%= Number(listing.price).toLocaleString("en-IN", { style: "currency", currency: "INR" }) %>/night
-                             <i style="color: #222222;" class="taxes">&nbsp; &nbsp;18% GST</i>
-                        </p>
-                    </div>
-                </div>
-            </a>
-        <% }) %>
+    <div class="filter flex-shrink-0">
+      <i class="fa-solid fa-bed"></i>
+      <p>Rooms</p>
+    </div>
+    <div class="filter flex-shrink-0">
+      <i class="fa-solid fa-mountain-city"></i>
+      <p>Iconic Cities</p>
+    </div>
+    <div class="filter flex-shrink-0">
+      <i class="fa-solid fa-mountain"></i>
+      <p>Mountains</p>
+    </div>
+    <div class="filter flex-shrink-0">
+      <i class="fa-brands fa-fort-awesome"></i>
+      <p>Castles</p>
+    </div>
+    <div class="filter flex-shrink-0">
+      <i class="fa-solid fa-person-swimming"></i>
+      <p>Amazing Pools</p>
+    </div>
+    <div class="filter flex-shrink-0">
+      <i class="fa-solid fa-campground"></i>
+      <p>Camping</p>
+    </div>
+    <div class="filter flex-shrink-0">
+      <i class="fa-solid fa-tractor"></i>
+      <p>Farm</p>
+    </div>
+    <div class="filter flex-shrink-0">
+      <i class="fa-solid fa-snowflake"></i>
+      <p>Arctic</p>
+    </div>
+    <div class="tax-toggler flex-shrink-0">
+      <div class="form-check-reverse form-switch filter">
+        <input class="form-check-input switchCheck" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+        <label class="form-check-label" for="flexSwitchCheckDefault">Display Taxes</label>
+      </div>
     </div>
   </div>
 
+  <!-- Listing Cards -->
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4 mt-3">
+    <% lists.map((listing) => { %>
+      <div class="col d-flex justify-content-center">
+        <a href="/listings/<%- listing._id %>" class="listing-link">
+          <div class="card listing-card">
+            <img src="<%- listing.image.url %>" class="card-img-top" alt="Listing Image">
+            <div class="card-img-overlay"></div>
+            <div class="card-body text-start ">
+              <p class="card-text">
+                <%- listing.title %> <br> 
+                <%= Number(listing.price).toLocaleString("en-IN", { style: "currency", currency: "INR" }) %>/night
+                <i style="color: #222222;" class="taxes d-none d-md-inline">&nbsp;&nbsp;18% GST</i>
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    <% }) %>
+  </div>
+</div>
 
-
-
+<!-- Tax Toggle Script -->
 <script>
-    let taxChecker = document.querySelector(".switchCheck");
-
-    
-taxChecker.addEventListener("click", (e) => {
-   let taxes = document.querySelectorAll(".taxes");
-
-   for(let tax of taxes){
-    tax.classList.toggle("active");
-   }
-})
+  const taxChecker = document.querySelector(".switchCheck");
+  taxChecker.addEventListener("click", () => {
+    document.querySelectorAll(".taxes").forEach(tax => {
+      tax.classList.toggle("d-none");
+    });
+  });
 </script>

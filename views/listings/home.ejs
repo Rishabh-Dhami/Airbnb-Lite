@@ -1,10 +1,11 @@
 <% layout('layout/boilerplate') -%>
-
-<div class="row">
-    <div class=" col-8 offset-3" >
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-8 offset-md-2">
       <% if (successMssg[0]) { %>
         <div class="alert alert-success"><%= successMssg[0] %></div>
-    <% } %>
-        <h1>Home page</h1>
-      </div>
+      <% } %>
+      <h1>Home page</h1>
+    </div>
+  </div>
 </div>
